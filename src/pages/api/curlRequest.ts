@@ -26,11 +26,11 @@ export default async function handler(
       );
 
       const response = await axios.post(
-        "http://18.141.174.41:8088/services/collector",
+        process.env?.HTTP_URL!,
         `{"event":"“user”:${user}, “type”: button"}`,
         {
           headers: {
-            Authorization: "Splunk 69c2cfd8-697e-4f2e-bf28-861d90961a4b",
+            Authorization: `Splunk ${process.env?.TOKEN!}`,
             "Content-Type": "application/x-www-form-urlencoded",
             "Cache-Control": null,
             "X-Requested-With": null,
@@ -38,6 +38,8 @@ export default async function handler(
           },
         }
       );
+
+      // 69c2cfd8-697e-4f2e-bf28-861d90961a4b
 
       console.log(response.data, "data");
 
